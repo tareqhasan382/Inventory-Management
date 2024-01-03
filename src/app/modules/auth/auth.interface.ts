@@ -6,6 +6,8 @@ export type IUser = {
   role?: string
   name: string
   email: string
+  image?: string
+  bio?: string
 }
 
 export type IUserModel = Model<IUser, Record<string, unknown>>

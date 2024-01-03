@@ -21,7 +21,7 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   // check exist user
   const isUserExist = await AuthModel.findOne(
     { email },
-    { email: 1, password: 1, role: 1 }
+    { email: 1, password: 1, role: 1, name: 1 }
   )
 
   if (!isUserExist) {
@@ -31,13 +31,23 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
 
   // create jwt token
   const accessToken = jwt.sign(
-    { userId: isUserExist._id, role: isUserExist.role },
+    {
+      userId: isUserExist._id,
+      email: isUserExist.email,
+      name: isUserExist.name,
+      role: isUserExist.role,
+    },
     config.jwt.secret as Secret,
     { expiresIn: '1d' }
   )
   //console.log('access token : ', accessToken)
   const refreshToken = jwt.sign(
-    { userId: isUserExist._id, role: isUserExist.role },
+    {
+      userId: isUserExist._id,
+      email: isUserExist.email,
+      name: isUserExist.name,
+      role: isUserExist.role,
+    },
     config.jwt.refresh_secret as Secret,
     { expiresIn: '365d' }
   )

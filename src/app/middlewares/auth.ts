@@ -13,8 +13,8 @@ export const authVerify =
       if (!token) {
         return res
           .status(httpStatus.UNAUTHORIZED)
-          .json('You Are Not Authorized')
-        //throw new ApiError(httpStatus.UNAUTHORIZED, 'You Are Not Authorized')
+          .json({ message: 'You Are Not Authorized' })
+        // throw new ApiError(httpStatus.UNAUTHORIZED, 'You Are Not Authorized')
       }
 
       //2 verify token

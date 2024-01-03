@@ -1,4 +1,4 @@
-### E-commerce management dashboard built with the (Express.js, Node.js,mongoose,mongoDB, jwt Authentication etc)
+### E-commerce management dashboard built with the (TypeScript,Express.js, Node.js,mongoose,mongoDB, jwt Authentication etc)
 
 Below are key features for such a dashboard:
 

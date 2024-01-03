@@ -5,17 +5,20 @@ import sendResponse from '../../../shared/sendResponse'
 import { Request, Response } from 'express'
 import config from '../../../config'
 import { AuthService } from './auth.service'
-import { ILoginUserResponse, IUser } from './auth.interface'
+import { ILoginUserResponse } from './auth.interface'
 import AuthModel from './auth.model'
 import bcrypt from 'bcrypt'
 const createUser = catchAsync(async (req: Request, res: Response) => {
   const data = req.body
+  const existUser = await AuthModel.findOne({ email: data.email })
+  if (existUser) {
+    return res.json({ status: 'false', message: 'user already Exist!' })
+  }
   const result = await AuthService.createUser(data)
 
-  sendResponse<IUser>(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'User created successfully!',
+  return res.json({
+    status: 'true',
+    message: 'Account created successfully!',
     data: result,
   })
 })
