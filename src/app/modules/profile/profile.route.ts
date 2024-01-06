@@ -4,7 +4,7 @@ import { authVerify } from '../../middlewares/auth'
 import { ENUM_USER_ROLE } from '../../../enum/user'
 
 const router = express.Router()
-
+router.patch('/editProfile/:id', ProfileController.updateProfile)
 router.get(
   '/profile',
   authVerify(
@@ -14,5 +14,5 @@ router.get(
   ),
   ProfileController.getProfile
 )
-router.patch('/editProfile', ProfileController.updateProfile)
+
 export const ProfileRoute = router

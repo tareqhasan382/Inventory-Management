@@ -7,6 +7,7 @@ import httpStatus from 'http-status'
 import { AuthRoute } from './app/modules/auth/auth.route'
 import cookieParser from 'cookie-parser'
 import { ProfileRoute } from './app/modules/profile/profile.route'
+import { ProductRoute } from './app/modules/products/product.route'
 
 const corsOptions = {
   origin: ['http://localhost:5173'],
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/v1', AuthRoute)
 app.use('/api/v1', ProfileRoute)
+app.use('/api/v1', ProductRoute)
 //Testing Route
 // app.get('/', async (req: Request, res: Response, next: NextFunction) => {
 //   throw new Error('Testing Error log')
